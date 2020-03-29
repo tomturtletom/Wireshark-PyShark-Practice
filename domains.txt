@@ -1,0 +1,4 @@
+sdnsagent.brightcloud.com
+dnspds.brightcloud.com
+sdnsp.brightcloud.com
+dnspds.s3.amazonaws.com
