@@ -11,17 +11,21 @@ The program requires Wireshark to be installed on the device, and can be run in 
 Sample Input:
 >python capture_info.py Wi-Fi domains.txt 30
 
-'''
 Sample Output (Domains do not correlate to IP addresses in this sample):
 >DOMAIN                                  IP ADDRESS               NUMBER OF PACKETS        NUMBER OF BYTES
+
 >sdnsagent.brightcloud.com               192.168.0.243            13                       1794
+
 >dnspds.brightcloud.com                  192.168.0.1              18                       1672
+
 >dnspds.brightcloud.com                  192.168.0.217            1                        203
+
 >sdnsp.brightcloud.com                   239.255.255.250          20                       3457
+
 >sdnsp.brightcloud.com                   224.0.0.251              14                       1009
+
 >dnspds.s3.amazonaws.com                 192.168.0.148            8                        551
 >
 >TOTAL OVER 30 SECONDS:    8686 bytes (74 packets)
 >PROJECTED OVER 1 DAY:     25015680 bytes (213120 packets)
 >PROJECTED OVER 30 DAYS:   750470400 bytes (6393600 packets)
-'''
