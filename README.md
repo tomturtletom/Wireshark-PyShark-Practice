@@ -12,6 +12,7 @@ Sample Input:
 >python capture_info.py Wi-Fi domains.txt 30
 
 Sample Output (Domains do not correlate to IP addresses in this sample):  
+<pre>
 >DOMAIN                                  IP ADDRESS               NUMBER OF PACKETS        NUMBER OF BYTES  
 >sdnsagent.brightcloud.com               192.168.0.243            13                       1794  
 >dnspds.brightcloud.com                  192.168.0.1              18                       1672  
@@ -23,3 +24,4 @@ Sample Output (Domains do not correlate to IP addresses in this sample):
 >TOTAL OVER 30 SECONDS:    8686 bytes (74 packets)  
 >PROJECTED OVER 1 DAY:     25015680 bytes (213120 packets)  
 >PROJECTED OVER 30 DAYS:   750470400 bytes (6393600 packets)
+</pre>
