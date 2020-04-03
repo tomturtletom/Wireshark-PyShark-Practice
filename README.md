@@ -10,7 +10,7 @@ The program requires Wireshark to be installed on the device, and can be run in 
 
 Sample Input:
 <pre>
-\>python capture_info.py Wi-Fi domains.txt 30
+>python capture_info.py Wi-Fi domains.txt 30
 </pre>
 
 Sample Output (Domains do not correlate to IP addresses in this sample):  
