@@ -15,10 +15,8 @@ Sample Output (Domains do not correlate to IP addresses in this sample):
 DOMAIN                                  IP ADDRESS               NUMBER OF PACKETS        NUMBER OF BYTES
 
 sdnsagent.brightcloud.com               192.168.0.243            13                       1794
-
-dnspds.brightcloud.com                  192.168.0.1              18                       1672
-
-dnspds.brightcloud.com                  192.168.0.217            1                        203
+\dnspds.brightcloud.com                  192.168.0.1              18                       1672
+\dnspds.brightcloud.com                  192.168.0.217            1                        203
 
 sdnsp.brightcloud.com                   239.255.255.250          20                       3457
 
