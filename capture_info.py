@@ -33,6 +33,7 @@ def formatIPs(ips: list) -> str:
 		formatted += ip + ' || '
 
 	formatted += ips[-1] + ')'
+
 	return formatted
 
 
@@ -50,15 +51,18 @@ def getIPLengths(interface: str, filters: str, ips: list, max_time: int) -> dict
 	ip_lengths = defaultdict(lambda: defaultdict(int))
 
 	for pac in capture[:len(capture)]:
-		source = pac.ip.src
-		dest = pac.ip.dst
+		try:
+			source = pac.ip.src
+			dest = pac.ip.dst
 
-		if source in ips:
-			ip_lengths[source]['length'] += int(pac.ip.len)
-			ip_lengths[source]['num_of_pacs'] += 1
-		elif dest in ips:
-			ip_lengths[dest]['length'] += int(pac.ip.len)
-			ip_lengths[dest]['num_of_pacs'] += 1
+			if source in ips:
+				ip_lengths[source]['length'] += int(pac.ip.len)
+				ip_lengths[source]['num_of_pacs'] += 1
+			if dest in ips:
+				ip_lengths[dest]['length'] += int(pac.ip.len)
+				ip_lengths[dest]['num_of_pacs'] += 1
+		except AttributeError:
+			continue
 
 	return ip_lengths
 
@@ -67,13 +71,13 @@ def displayAll(domain_info: dict, ip_info: dict, max_time: int):
 	# Displays all of the collected information with columns: domain, IP address, number of packets, and number of bytes for each unique ip address. Also
 	# displays the total number of packets and bytes at the end with projections over a day and a month.
 
-	in_day = int(86400 / max_time)
-	in_month = int(in_day * 30)
+	in_day = float(86400 / max_time)
+	in_month = float(in_day * 30)
 
 	total_pacs = 0
 	total_bytes = 0
 
-	print('\n{:35}{:35}{:35}{:35}'.format('DOMAIN', 'IP ADDRESS', 'NUMBER OF PACKETS', 'NUMBER OF BYTES'))
+	print('\n{:40}{:25}{:25}{:25}'.format('DOMAIN', 'IP ADDRESS', 'NUMBER OF PACKETS', 'NUMBER OF BYTES'))
 
 	for domain, ip_list in domain_info.items():
 		for ip in ip_list:
@@ -81,13 +85,13 @@ def displayAll(domain_info: dict, ip_info: dict, max_time: int):
 			length = ip_info[ip]['length']
 
 			if pacs != 0:
-				print('{:35}{:35}{:<35}{:<35}'.format(domain, ip, pacs, length))
+				print('{:40}{:25}{:<25}{:<25}'.format(domain, ip, pacs, length))
 				total_pacs += pacs
 				total_bytes += length
 
 	print('\n{:<25} {} bytes ({} packets)'.format('TOTAL OVER ' + str(max_time) + ' SECONDS:', total_bytes, total_pacs))
-	print('{:<25} {} bytes ({} packets)'.format('PROJECTED OVER 1 DAY:', total_bytes * in_day, total_pacs * in_day))
-	print('{:<25} {} bytes ({} packets)'.format('PROJECTED OVER 30 DAYS:', total_bytes * in_month, total_pacs * in_month))
+	print('{:<25} {} bytes ({} packets)'.format('PROJECTED OVER 1 DAY:', int(total_bytes * in_day), int(total_pacs * in_day)))
+	print('{:<25} {} bytes ({} packets)'.format('PROJECTED OVER 30 DAYS:', int(total_bytes * in_month), int(total_pacs * in_month)))
 
 
 def main():
